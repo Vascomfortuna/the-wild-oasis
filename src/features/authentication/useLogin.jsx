@@ -12,9 +12,8 @@ export function useLogin() {
     onSuccess: (user) => {
       // we inject the data into the cache after a successful login
       // so that useUser doesn't need to refecth it
-      // PS: doesn't seem to work
-      queryClient.setQueriesData(["user"], user);
-      navigate("/dashboard");
+      queryClient.setQueryData(["user"], user.user);
+      navigate("/dashboard", { replace: true });
     },
     onError: (err) => {
       console.log("ERROR", err);
